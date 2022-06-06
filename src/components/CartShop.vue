@@ -11,7 +11,7 @@
 import { collection, query, onSnapshot } from "firebase/firestore";
 import { useStore } from "vuex";
 import { db } from "@/fire/fireconfig";
-import { ref, watchEffect } from "@vue/runtime-core";
+import { computed, ref, watchEffect } from "@vue/runtime-core";
 export default {
   setup() {
     const store = useStore();
@@ -28,7 +28,11 @@ export default {
         querySnapshot.forEach((doc) => {
           values.push({ id: doc.id, data: doc.data() });
         });
-        quantity.value = values.length;
+        if (store.state.login === true) {
+          quantity.value = values.length;
+        } else {
+          quantity.value = 0;
+        }
         localStorage.setItem("shop", JSON.stringify(values));
       });
     });
