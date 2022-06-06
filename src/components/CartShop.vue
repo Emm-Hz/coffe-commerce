@@ -11,7 +11,7 @@
 import { collection, query, onSnapshot } from "firebase/firestore";
 import { useStore } from "vuex";
 import { db } from "@/fire/fireconfig";
-import { computed, ref, watchEffect } from "@vue/runtime-core";
+import { ref, watchEffect } from "@vue/runtime-core";
 export default {
   setup() {
     const store = useStore();
